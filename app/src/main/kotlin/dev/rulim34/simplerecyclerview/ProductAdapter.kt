@@ -25,7 +25,7 @@ class ProductAdapter(private val productList: List<Product>) : RecyclerView.Adap
         // Menggunakan Glide untuk memuat gambar
         Glide.with(holder.itemView.context)
             .load(product.imageResId)
-            .placeholder(R.drawable.progress_activity_24dp) // Gambar placeholder
+            .placeholder(R.drawable.progress_activity_24dp)
             .into(holder.imageView)
         holder.textView.text = product.name
     }
