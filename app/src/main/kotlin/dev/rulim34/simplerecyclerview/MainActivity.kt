@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewVertical: RecyclerView
+    private lateinit var recyclerViewHorizontal: RecyclerView
     private lateinit var productAdapter: ProductAdapter
     private lateinit var productList: List<Product>
 
@@ -25,9 +27,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Inisialisasi RecyclerView
-        recyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = GridLayoutManager(this, 2) // Untuk scroll vertikal
+        // Inisialisasi RecyclerView Vertikal
+        recyclerViewVertical = findViewById(R.id.recycler_view_vertical)
+        recyclerViewVertical.layoutManager = GridLayoutManager(this, 2) // Untuk scroll vertikal
+
+        // Inisialisasi RecyclerView Horizontal
+        recyclerViewHorizontal = findViewById(R.id.recycler_view_horizontal)
+        recyclerViewHorizontal.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false) // Untuk scroll horizontal
 
         // Buat data produk
         productList = listOf(
@@ -45,8 +51,11 @@ class MainActivity : AppCompatActivity() {
             Product(R.drawable.delta_force_luna, "Product 12"),
         )
 
-        // Inisialisasi adapter
+        // Inisialisasi adapter untuk RecyclerView Vertikal
         productAdapter = ProductAdapter(productList)
-        recyclerView.adapter = productAdapter
+        recyclerViewVertical.adapter = productAdapter
+
+        // Inisialisasi adapter untuk RecyclerView Horizontal
+        recyclerViewHorizontal.adapter = productAdapter // Anda bisa menggunakan adapter yang sama atau membuat adapter baru jika diperlukan
     }
 }
